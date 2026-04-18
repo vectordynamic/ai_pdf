@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter, Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 import { BOOK } from "@/const/book";
+import FacebookMsg from "@/components/FacebookMsg";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -36,6 +37,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col font-inter bg-bg text-text" suppressHydrationWarning>
         {children}
+        <FacebookMsg />
       </body>
     </html>
   );

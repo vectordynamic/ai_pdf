@@ -132,6 +132,6 @@ export const BOOK = {
     seoDescription: "Master AI for your business. The complete guide to implementing AI workflows, automating tasks, and scaling operations.",
   },
   socials: {
-    facebook: "https://facebook.com/your-page-link",
+    facebook: "https://www.facebook.com/profile.php?id=61588625931008",
   }
 } as const;

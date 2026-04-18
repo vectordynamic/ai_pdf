@@ -68,7 +68,7 @@ export default function HowToBuy() {
               <div className="flex-1">
                 <h3 className="text-xl font-bold text-text mb-2 mt-1.5">ফর্ম সাবমিট করুন ও বুঝে নিন</h3>
                 <p className="text-muted mb-6">
-                  নিচের ফর্মে ট্রানজেকশন আইডি সাবমিট করুন <strong className="text-text">অথবা</strong> সরাসরি আমাদের ফেসবুক পেজে মেসেজ করুন। আমরা ভেরিফাই করে সাথে সাথেই PDF দিয়ে দেবো!
+                  নিচের ফর্মে ট্রানজেকশন আইডি ও ইমেইল সাবমিট করুন। পেমেন্ট ভেরিফাই হওয়ার পর আপনার ইমেইলে বইটি পাঠিয়ে দেয়া হবে। এছাড়া <strong className="text-text">সরাসরি আমাদের ফেসবুক পেজে মেসেজ</strong> দিয়েও আপনি বইটি কিনতে পারেন। কোনো সমস্যা হলে বা ডেলিভারি পেতে দেরি হলে আমাদের পেজে মেসেজ দিন।
                 </p>
                 <a 
                   href={BOOK.socials.facebook} 

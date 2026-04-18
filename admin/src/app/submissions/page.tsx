@@ -24,6 +24,7 @@ export default async function SubmissionsPage() {
                 <th className="p-4 text-sm font-bold text-zinc-400">Transaction ID</th>
                 <th className="p-4 text-sm font-bold text-zinc-400">Method</th>
                 <th className="p-4 text-sm font-bold text-zinc-400">Mobile</th>
+                <th className="p-4 text-sm font-bold text-zinc-400">Email</th>
                 <th className="p-4 text-sm font-bold text-zinc-400">Submitted At</th>
                 <th className="p-4 text-sm font-bold text-zinc-400">Status</th>
                 <th className="p-4 text-sm font-bold text-zinc-400 text-right">Action</th>

@@ -15,6 +15,7 @@ const formSchema = z.object({
     .string()
     .length(11, "মোবাইল নাম্বারটি অবশ্যই ১১ অক্ষরের হতে হবে")
     .regex(/^01[3-9]\d{8}$/, "সঠিক বাংলাদেশী মোবাইল নাম্বার দিন (যেমনঃ 017XXXXXXXX)"),
+  email: z.string().email("সঠিক ইমেইল এড্রেস দিন"),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -59,7 +60,7 @@ export default function CheckoutForm() {
         <CheckCircle2 className="w-16 h-16 text-emerald-500" />
         <h3 className="text-2xl font-bold text-text">ধন্যবাদ!</h3>
         <p className="text-muted text-lg max-w-sm">
-          আপনার ট্রানজেকশন আইডি আমাদের কাছে এসেছে। ভেরিফাই করে ৩০ মিনিটের মাঝে আপনার ডেলিভারি কনফার্ম করা হবে।
+          আপনার ট্রানজেকশন আইডি আমাদের কাছে এসেছে। পেমেন্ট ভেরিফাই হওয়ার পর আপনার ইমেইলে বইটি পাঠিয়ে দেয়া হবে। ডেলিভারি পেতে দেরি হলে আমাদের ফেসবুক পেজে মেসেজ দিন।
         </p>
       </div>
     );
@@ -136,6 +137,24 @@ export default function CheckoutForm() {
           />
           {errors.mobile && (
             <p className="text-red-400 text-sm font-medium">{errors.mobile.message}</p>
+          )}
+        </div>
+        {/* Email Address Field */}
+        <div className="space-y-2 text-left">
+          <label htmlFor="email" className="block text-sm font-bold text-text">
+            ইমেইল এড্রেস <span className="text-muted font-normal">(যেখানে বইটি ডেলিভারি করা হবে)</span>
+          </label>
+          <input
+            id="email"
+            type="email"
+            placeholder="উদাঃ example@gmail.com"
+            className={`w-full bg-bg border ${
+              errors.email ? "border-red-500/50 focus:ring-red-500/50" : "border-white/10 focus:ring-primary/50"
+            } rounded-xl px-4 py-4 text-text placeholder-slate-500 focus:outline-none focus:ring-2 transition-all`}
+            {...register("email")}
+          />
+          {errors.email && (
+            <p className="text-red-400 text-sm font-medium">{errors.email.message}</p>
           )}
         </div>
 

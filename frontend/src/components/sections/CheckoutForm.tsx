@@ -10,7 +10,7 @@ import { toast } from "sonner";
 
 // The validation schema
 const formSchema = z.object({
-  paymentMethod: z.string().min(1, "পেমেন্ট মেথড সিলেক্ট করুন"),
+  paymentMethod: z.string().min(1, "দয়া করে একটি পেমেন্ট মেথড সিলেক্ট করুন"),
   transactionId: z.string().min(6, "ট্রানজেকশন আইডি অন্তত ৬ অক্ষরের হতে হবে"),
   mobile: z
     .string()

@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { CheckCircle2, Lock, Loader2, ChevronDown } from "lucide-react";
 import { BOOK } from "@/const/book";
+import { toast } from "sonner";
 
 // The validation schema
 const formSchema = z.object({
@@ -15,7 +16,10 @@ const formSchema = z.object({
     .string()
     .length(11, "মোবাইল নাম্বারটি অবশ্যই ১১ অক্ষরের হতে হবে")
     .regex(/^01[3-9]\d{8}$/, "সঠিক বাংলাদেশী মোবাইল নাম্বার দিন (যেমনঃ 017XXXXXXXX)"),
-  email: z.string().email("সঠিক ইমেইল এড্রেস দিন"),
+  email: z
+    .string()
+    .min(1, "ইমেইল এড্রেসটি প্রয়োজন")
+    .email("সঠিক একটি ইমেইল এড্রেস দিন (যেমনঃ example@gmail.com)"),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -43,14 +47,15 @@ export default function CheckoutForm() {
       const result = await response.json();
 
       if (!response.ok) {
-        alert(result.error || "Something went wrong.");
+        toast.error(result.error || "পেমেন্ট ইনফরমেশন সাবমিট করা যায়নি।");
         return;
       }
 
+      toast.success("সাবমিশন সফল হয়েছে!");
       setIsSuccess(true);
     } catch (error) {
       console.error(error);
-      alert("Failed to submit. Please try again.");
+      toast.error("সার্ভার এরর। আবার চেষ্টা করুন।");
     }
   };
 

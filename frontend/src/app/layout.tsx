@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Inter, Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 import { BOOK } from "@/const/book";
 import FacebookMsg from "@/components/FacebookMsg";
+import { Toaster } from "sonner";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -36,6 +37,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-inter bg-bg text-text" suppressHydrationWarning>
+        <Toaster position="top-center" richColors />
         {children}
         <FacebookMsg />
       </body>

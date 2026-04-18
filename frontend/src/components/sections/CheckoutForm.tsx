@@ -34,6 +34,12 @@ export default function CheckoutForm() {
     formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      paymentMethod: "",
+      transactionId: "",
+      mobile: "",
+      email: "",
+    },
   });
 
   const onSubmit = async (data: FormData) => {
@@ -145,7 +151,7 @@ export default function CheckoutForm() {
           )}
         </div>
         {/* Email Address Field */}
-        <div className="space-y-2 text-left">
+        <div className="space-y-2 text-left" suppressHydrationWarning>
           <label htmlFor="email" className="block text-sm font-bold text-text">
             ইমেইল এড্রেস <span className="text-muted font-normal">(যেখানে বইটি ডেলিভারি করা হবে)</span>
           </label>
@@ -153,6 +159,7 @@ export default function CheckoutForm() {
             id="email"
             type="email"
             placeholder="উদাঃ example@gmail.com"
+            suppressHydrationWarning={true}
             className={`w-full bg-bg border ${
               errors.email ? "border-red-500/50 focus:ring-red-500/50" : "border-white/10 focus:ring-primary/50"
             } rounded-xl px-4 py-4 text-text placeholder-slate-500 focus:outline-none focus:ring-2 transition-all`}

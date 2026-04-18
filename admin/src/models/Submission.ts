@@ -6,6 +6,7 @@ const SubmissionSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      index: true,
     },
     paymentMethod: {
       type: String,

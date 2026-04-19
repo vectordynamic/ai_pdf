@@ -29,7 +29,7 @@ export default function SubmissionRow({ submission }: { submission: any }) {
       <td className="p-4 font-medium text-sm text-zinc-300">{submission.paymentMethod}</td>
       <td className="p-4 font-medium text-zinc-300">{submission.mobile}</td>
       <td className="p-4 font-medium text-zinc-300">{submission.email}</td>
-      <td className="p-4 text-sm text-zinc-500">
+      <td className="p-4 text-sm text-zinc-500" suppressHydrationWarning>
         {new Date(submission.createdAt).toLocaleString()}
       </td>
       <td className="p-4">

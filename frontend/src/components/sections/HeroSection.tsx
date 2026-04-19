@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import { BOOK } from "@/const/book";
+import { fbEvent } from "@/components/MetaPixel";
 
 export default function HeroSection() {
   return (
@@ -45,6 +48,7 @@ export default function HeroSection() {
 
         <a
           href="#checkout"
+          onClick={() => fbEvent("Lead", { content_name: BOOK.title, value: BOOK.priceValue, currency: "BDT" })}
           className="w-full block bg-primary hover:bg-emerald-400 text-bg font-extrabold text-lg py-5 px-8 rounded-2xl shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] transform transition-all duration-300 hover:scale-[1.02] active:scale-95 text-center focus:ring-4 focus:ring-primary/50 outline-none"
         >
           অর্ডার করুন — {BOOK.price}

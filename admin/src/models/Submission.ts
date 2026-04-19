@@ -25,6 +25,11 @@ const SubmissionSchema = new mongoose.Schema(
       enum: ["Pending", "Verified"],
       default: "Pending",
     },
+    // Meta Tracking Data
+    fbp: String,
+    fbc: String,
+    userAgent: String,
+    ipAddress: String,
   },
   { timestamps: true }
 );

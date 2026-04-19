@@ -4,6 +4,7 @@ export const BOOK = {
   fullTitle: "Zero to AI Expert: The Direct Path to Career Growth",
   slug: "zero-to-ai-expert-the-direct-path-to-career-growth",
   price: "৳199",
+  priceValue: 199,
   originalPrice: "৳399",
   coverImage: "/cover/book_cover_gold.png",
   description: "AI নিয়ে ভয় না পেয়ে, একে আপনার সবচেয়ে স্মার্ট অ্যাসিস্ট্যান্ট বানানোর এখনই সঠিক সময়। এই বইটিতে আপনি শিখবেন কিভাবে কোনো কোডিং বা টেকনিক্যাল জ্ঞান ছাড়াই AI টুলস ব্যবহার করে আপনার দৈনন্দিন কাজ, ব্যবসা এবং ক্যারিয়ারকে নেক্সট লেভেলে নিয়ে যেতে হয়।",
@@ -128,8 +129,8 @@ export const BOOK = {
     }
   ],
   meta: {
-    seoTitle: "Zero to AI Expert - The Direct Path to Career Growth",
-    seoDescription: "Master AI for your business. The complete guide to implementing AI workflows, automating tasks, and scaling operations.",
+    seoTitle: "Zero to AI Expert | AI দিয়ে ক্যারিয়ার ও বিজনেস গ্রোথের কমপ্লিট গাইড",
+    seoDescription: "কোনো কোডিং ছাড়াই AI মাস্টার করুন। ২৫০+ রেডিমেড প্রম্পট, ৫০+ টুলস এবং প্র্যাকটিক্যাল ওয়ার্কফ্লো দিয়ে আপনার ক্যারিয়ার ও বিজনেসকে নেক্সট লেভেলে নিয়ে যান। মাত্র ৳199।",
   },
   socials: {
     facebook: "https://www.facebook.com/profile.php?id=61588625931008",

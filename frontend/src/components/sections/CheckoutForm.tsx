@@ -7,6 +7,7 @@ import * as z from "zod";
 import { CheckCircle2, Lock, Loader2, ChevronDown } from "lucide-react";
 import { BOOK } from "@/const/book";
 import { toast } from "sonner";
+import { fbEvent } from "@/components/MetaPixel";
 
 // The validation schema
 const formSchema = z.object({
@@ -43,6 +44,14 @@ export default function CheckoutForm() {
   });
 
   const onSubmit = async (data: FormData) => {
+    // Track InitiateCheckout with numeric value for accurate ROAS
+    fbEvent("InitiateCheckout", {
+      content_name: BOOK.title,
+      content_category: "eBook",
+      value: BOOK.priceValue,
+      currency: "BDT",
+    });
+
     try {
       const response = await fetch("/api/submissions", {
         method: "POST",
@@ -58,6 +67,13 @@ export default function CheckoutForm() {
       }
 
       toast.success("সাবমিশন সফল হয়েছে!");
+      
+      // Track successful form completion
+      fbEvent("CompleteRegistration", {
+        content_name: BOOK.title,
+        value: BOOK.priceValue,
+        currency: "BDT",
+      });
       setIsSuccess(true);
     } catch (error) {
       console.error(error);

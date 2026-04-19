@@ -4,6 +4,8 @@ import "./globals.css";
 import { BOOK } from "@/const/book";
 import FacebookMsg from "@/components/FacebookMsg";
 import { Toaster } from "sonner";
+import MetaPixel from "@/components/MetaPixel";
+import { Suspense } from "react";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -32,11 +34,14 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="bn"
       className={`${jakarta.variable} ${inter.variable} ${bangla.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-inter bg-bg text-text" suppressHydrationWarning>
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
         <Toaster position="top-center" richColors />
         {children}
         <FacebookMsg />

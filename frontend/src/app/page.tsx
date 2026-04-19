@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import { BOOK } from "@/const/book";
 import HeroSection from "@/components/sections/HeroSection";
 import WhatsInside from "@/components/sections/WhatsInside";
@@ -6,13 +7,41 @@ import WhoIsThisFor from "@/components/sections/WhoIsThisFor";
 import SocialProof from "@/components/sections/SocialProof";
 import HowToBuy from "@/components/sections/HowToBuy";
 import BottomInfo from "@/components/sections/BottomInfo";
+import TrackOnView from "@/components/TrackOnView";
 
-export function generateMetadata() {
-  return {
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com";
+
+export const metadata: Metadata = {
+  title: BOOK.meta.seoTitle,
+  description: BOOK.meta.seoDescription,
+  metadataBase: new URL(SITE_URL),
+  openGraph: {
     title: BOOK.meta.seoTitle,
     description: BOOK.meta.seoDescription,
-  };
-}
+    url: SITE_URL,
+    siteName: BOOK.title,
+    images: [
+      {
+        url: `${SITE_URL}/cover/book_cover_gold.png`,
+        width: 1200,
+        height: 630,
+        alt: BOOK.title,
+      },
+    ],
+    locale: "bn_BD",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: BOOK.meta.seoTitle,
+    description: BOOK.meta.seoDescription,
+    images: [`${SITE_URL}/cover/book_cover_gold.png`],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
 
 export default function BookDetailPage() {
   return (
@@ -22,32 +51,38 @@ export default function BookDetailPage() {
       <div className="fixed bottom-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -z-10 pointer-events-none" />
 
       <div className="max-w-4xl mx-auto w-full px-6 py-12 md:py-20 space-y-16 md:space-y-24">
-        {/* Top: Hero + Buy Button */}
+        {/* 1. Hero + Buy Button */}
         <HeroSection />
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* Core Highlights */}
-        <WhatsInside />
+        {/* 2. Core Highlights — prove the value (tracks ViewContent on scroll) */}
+        <TrackOnView eventName="ViewContent" eventData={{ content_name: "WhatsInside Section", content_category: "eBook" }}>
+          <WhatsInside />
+        </TrackOnView>
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* Payment / Order Form */}
-        <HowToBuy />
-
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-        {/* Who is it for */}
+        {/* 3. Who is it for — make them self-identify */}
         <WhoIsThisFor />
 
-        {/* Full Curriculum */}
-        <CourseIndex />
-
-        {/* Reviews */}
+        {/* 4. Social Proof — build trust BEFORE asking for money */}
         <SocialProof />
 
-        {/* FAQ + Why This Book */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+        {/* 5. Full Curriculum — show depth of content */}
+        <CourseIndex />
+
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+        {/* 6. FAQ + Why This Book — handle objections */}
         <BottomInfo />
+
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+        {/* 7. Payment / Order Form — ask for money LAST after full trust */}
+        <HowToBuy />
       </div>
 
       {/* Footer */}

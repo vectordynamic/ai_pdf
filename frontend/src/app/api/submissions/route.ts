@@ -39,6 +39,24 @@ export async function POST(req: Request) {
       ipAddress,
     });
 
+    // Fire Meta CAPI CompleteRegistration Event
+    // We don't await this to keep the user response fast
+    import("@/lib/meta-capi").then(({ sendMetaEvent }) => {
+      sendMetaEvent(
+        "CompleteRegistration",
+        {
+          email,
+          phone: mobile,
+          client_ip_address: ipAddress,
+          client_user_agent: userAgent,
+          fbp,
+          fbc,
+        },
+        {},
+        submission._id.toString()
+      );
+    }).catch(err => console.error("Frontend CAPI Error:", err));
+
     return NextResponse.json({ success: true, data: submission }, { status: 201 });
   } catch (error: any) {
     console.error("Submission error:", error);

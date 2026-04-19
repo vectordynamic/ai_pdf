@@ -1,7 +1,8 @@
 import crypto from "crypto";
+import { BOOK } from "@/const/book";
 
-const PIXEL_ID = process.env.FB_PIXEL_ID;
-const ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN;
+const PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
+const ACCESS_TOKEN = process.env.FB_ACCESS_TOKEN; // Note: Need to add this to frontend .env
 const TEST_EVENT_CODE = process.env.FB_TEST_EVENT_CODE;
 
 /**
@@ -38,12 +39,14 @@ export async function sendMetaEvent(
   customData: MetaCustomData = {},
   eventId?: string
 ) {
+  // Guard: Frontend CAPI requires the Server-Side Access Token
   if (!PIXEL_ID || !ACCESS_TOKEN) {
-    console.warn("Meta CAPI: Missing PIXEL_ID or ACCESS_TOKEN");
+    if (process.env.NODE_ENV === "development") {
+      console.warn("Meta CAPI: Missing PIXEL_ID or FB_ACCESS_TOKEN in environment");
+    }
     return;
   }
 
-  // Ensure IP and UA are present, fallback to current headers ONLY if not provided
   const payload = {
     data: [
       {
@@ -62,8 +65,8 @@ export async function sendMetaEvent(
         custom_data: {
           value: customData.value,
           currency: customData.currency || "BDT",
-          content_name: customData.content_name,
-          content_category: customData.content_category,
+          content_name: customData.content_name || BOOK.title,
+          content_category: customData.content_category || "eBook",
         },
       },
     ],
@@ -83,9 +86,7 @@ export async function sendMetaEvent(
     const result = await response.json();
     
     if (result.error) {
-      console.error("Meta CAPI Error:", result.error);
-    } else {
-      console.log(`Meta CAPI Success: ${eventName}`, result);
+       console.error("Meta CAPI Error:", result.error);
     }
   } catch (error) {
     console.error("Meta CAPI Request Failed:", error);

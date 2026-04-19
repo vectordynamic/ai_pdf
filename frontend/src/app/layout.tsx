@@ -66,7 +66,9 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className="min-h-full flex flex-col font-inter bg-bg text-text" suppressHydrationWarning>
-        <MetaPixel />
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
         <Toaster position="top-center" richColors />
         {children}
         <FacebookMsg />

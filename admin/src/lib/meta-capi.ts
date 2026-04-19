@@ -50,6 +50,7 @@ export async function sendMetaEvent(
         event_name: eventName,
         event_time: Math.floor(Date.now() / 1000),
         event_id: eventId,
+        event_source_url: process.env.NEXT_PUBLIC_SITE_URL || "https://vectordynamic.com",
         action_source: "website",
         user_data: {
           em: userData.email ? [hashData(userData.email)] : [],
@@ -58,6 +59,7 @@ export async function sendMetaEvent(
           client_user_agent: userData.client_user_agent,
           fbc: userData.fbc,
           fbp: userData.fbp,
+          external_id: eventId ? [hashData(eventId)] : [], // Added as a match parameter
         },
         custom_data: {
           value: customData.value,

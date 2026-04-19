@@ -6,9 +6,13 @@ import { useEffect } from "react";
 
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
 
-export const fbEvent = (name: string, options = {}) => {
+export const fbEvent = (name: string, options = {}, eventId?: string) => {
   if (typeof window !== "undefined" && (window as any).fbq) {
-    (window as any).fbq("track", name, options);
+    if (eventId) {
+      (window as any).fbq("track", name, options, { event_id: eventId });
+    } else {
+      (window as any).fbq("track", name, options);
+    }
   }
 };
 

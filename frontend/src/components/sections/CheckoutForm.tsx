@@ -68,12 +68,12 @@ export default function CheckoutForm() {
 
       toast.success("সাবমিশন সফল হয়েছে!");
       
-      // Track successful form completion
+      // Track successful form completion with deduplication ID
       fbEvent("CompleteRegistration", {
         content_name: BOOK.title,
         value: BOOK.priceValue,
         currency: "BDT",
-      });
+      }, result.data._id); // Matches the CAPI event_id
       setIsSuccess(true);
     } catch (error) {
       console.error(error);

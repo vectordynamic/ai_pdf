@@ -4,6 +4,7 @@ import Submission from "@/models/Submission";
 import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 import { sendMetaEvent } from "@/lib/meta-capi";
+import { BOOK } from "@/const/book";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -61,9 +62,9 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
         fbc: submission.fbc,
       },
       {
-        value: 200,
+        value: BOOK.priceValue,
         currency: "BDT",
-        content_name: "AI Expert eBook",
+        content_name: BOOK.title,
         content_category: "eBook",
       },
       submission._id.toString() // Event ID for deduplication

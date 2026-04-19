@@ -10,7 +10,7 @@
 # Production
 **/build
 **/dist
-
+env.txt
 # Environment files
 **/.env
 **/.env.local

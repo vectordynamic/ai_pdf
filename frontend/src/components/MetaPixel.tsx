@@ -7,11 +7,16 @@ import { useEffect } from "react";
 const FB_PIXEL_ID = process.env.NEXT_PUBLIC_FB_PIXEL_ID;
 
 export const fbEvent = (name: string, options = {}, eventId?: string) => {
-  if (typeof window !== "undefined" && (window as any).fbq) {
-    if (eventId) {
-      (window as any).fbq("track", name, options, { event_id: eventId });
+  if (typeof window !== "undefined") {
+    const fbq = (window as any).fbq;
+    if (fbq) {
+      if (eventId) {
+        fbq("track", name, options, { event_id: eventId });
+      } else {
+        fbq("track", name, options);
+      }
     } else {
-      (window as any).fbq("track", name, options);
+      console.warn(`Meta Pixel: fbq not found. Event ${name} was not tracked.`);
     }
   }
 };

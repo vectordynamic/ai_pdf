@@ -7,12 +7,24 @@ const TEST_EVENT_CODE = process.env.FB_TEST_EVENT_CODE;
 
 /**
  * Hashes data using SHA-256 for Meta CAPI compliance.
+ * Handles special formatting for phone numbers to boost match quality.
  */
-function hashData(data: string | undefined): string | null {
+function hashData(data: string | undefined, isPhone = false): string | null {
   if (!data) return null;
+  let formatted = data.trim().toLowerCase();
+
+  if (isPhone) {
+    // Remove all non-numeric characters
+    formatted = formatted.replace(/\D/g, "");
+    // If it's a standard Bangladeshi number starting with 01, prepend 88
+    if (formatted.startsWith("01") && formatted.length === 11) {
+      formatted = "88" + formatted;
+    }
+  }
+
   return crypto
     .createHash("sha256")
-    .update(data.trim().toLowerCase())
+    .update(formatted)
     .digest("hex");
 }
 
@@ -57,7 +69,7 @@ export async function sendMetaEvent(
         action_source: "website",
         user_data: {
           em: userData.email ? [hashData(userData.email)] : [],
-          ph: userData.phone ? [hashData(userData.phone)] : [],
+          ph: userData.phone ? [hashData(userData.phone, true)] : [],
           client_ip_address: userData.client_ip_address,
           client_user_agent: userData.client_user_agent,
           fbc: userData.fbc,

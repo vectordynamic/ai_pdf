@@ -6,6 +6,7 @@ import FacebookMsg from "@/components/FacebookMsg";
 import { Toaster } from "sonner";
 import MetaPixel from "@/components/MetaPixel";
 import { Suspense } from "react";
+import Script from "next/script";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -38,9 +39,11 @@ export default function RootLayout({
       className={`${jakarta.variable} ${inter.variable} ${bangla.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        {/* Bulletproof Meta Pixel */}
-        <script
+      <body className="min-h-full flex flex-col font-inter bg-bg text-text" suppressHydrationWarning>
+        {/* Official Next.js Way to load Meta Pixel */}
+        <Script
+          id="meta-pixel-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -53,19 +56,10 @@ export default function RootLayout({
               'https://connect.facebook.net/en_US/fbevents.js');
               fbq('init', '1483303606780375');
               fbq('track', 'PageView');
+              console.log('Meta Pixel: Initialized');
             `,
           }}
         />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src={`https://www.facebook.com/tr?id=1483303606780375&ev=PageView&noscript=1`}
-          />
-        </noscript>
-      </head>
-      <body className="min-h-full flex flex-col font-inter bg-bg text-text" suppressHydrationWarning>
         <Suspense fallback={null}>
           <MetaPixel />
         </Suspense>

@@ -95,9 +95,13 @@ export default function HowToBuy() {
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-accent/10 rounded-3xl blur-2xl -z-10 transform -rotate-1" />
           
           <div className="bg-surface/80 backdrop-blur-xl border border-white/10 p-6 sm:p-10 rounded-3xl shadow-2xl relative">
-            <h3 className="text-2xl font-bold font-heading text-text mb-6 pb-6 border-b border-white/10 text-center">
+            <h3 className="text-2xl font-bold font-heading text-text mb-2 text-center">
               ভেরিফিকেশন ফর্ম
             </h3>
+            <p className="text-emerald-400 text-xs font-bold text-center mb-6 bg-emerald-500/10 py-2 px-3 rounded-lg border border-emerald-500/20">
+              একবার কিনলে লাইফটাইম সাপোর্ট এবং বইটির সকল নতুন এডিশন ফ্রি পাবেন!
+            </p>
+            <div className="h-px bg-white/10 w-full mb-6" />
             
             <CheckoutForm />
           </div>

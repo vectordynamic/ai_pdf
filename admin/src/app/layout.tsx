@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { LayoutDashboard, Users } from "lucide-react";
+import LogoutButton from "@/components/LogoutButton";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,7 @@ export default function RootLayout({
     <html lang="en" style={{ colorScheme: 'dark' }}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white flex h-screen`}>
         {/* Simple Sidebar */}
-        <aside className="w-64 bg-zinc-950 border-r border-zinc-800 flex flex-col">
+        <aside className="w-64 bg-zinc-950 border-r border-zinc-800 flex flex-col shrink-0">
           <div className="p-6 border-b border-zinc-800">
             <h1 className="text-xl font-bold">Admin Panel</h1>
           </div>
@@ -40,6 +41,9 @@ export default function RootLayout({
               <Users className="w-5 h-5 text-zinc-500" /> Submissions
             </Link>
           </nav>
+          <div className="p-4 border-t border-zinc-800">
+            <LogoutButton />
+          </div>
         </aside>
 
         {/* Main Content Area */}

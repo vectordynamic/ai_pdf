@@ -67,7 +67,7 @@ export async function sendMetaEvent(
         },
       },
     ],
-    test_event_code: TEST_EVENT_CODE,
+    test_event_code: TEST_EVENT_CODE && TEST_EVENT_CODE !== "OPTIONAL_TEST_EVENT_CODE" ? TEST_EVENT_CODE : undefined,
   };
 
   try {

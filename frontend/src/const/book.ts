@@ -97,9 +97,9 @@ export const BOOK = {
     },
   ],
   payment: {
-    bkashNumber: "01XXXXXXXXX",
-    nagadNumber: "01XXXXXXXXX",
-    rocketNumber: "01XXXXXXXXX",
+    bkashNumber: "01712345678",
+    nagadNumber: "01812345678",
+    rocketNumber: "01912345678",
   },
   paymentMethods: ["bKash", "Nagad", "Rocket"],
   stats: {

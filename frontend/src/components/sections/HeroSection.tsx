@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { BOOK } from "@/const/book";
 import { fbEvent } from "@/components/MetaPixel";
+import CountdownTimer from "@/components/CountdownTimer";
 
 export default function HeroSection() {
   return (
@@ -37,13 +38,22 @@ export default function HeroSection() {
       </div>
 
       {/* Primary CTA */}
-      <div className="w-full max-w-sm mx-auto flex flex-col items-center space-y-4 pt-4">
+      <div className="w-full max-w-sm mx-auto flex flex-col items-center space-y-6 pt-4">
+        
+        {/* Countdown Timer Hook */}
+        <CountdownTimer />
 
-        <div className="flex items-center justify-center gap-3 w-full">
-          <span className="text-muted line-through text-lg">{BOOK.originalPrice}</span>
-          <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-bold border border-primary/30">
-            🔥 স্পেশাল অফার: {BOOK.price}
-          </span>
+        <div className="flex flex-col items-center gap-3 w-full bg-surface/40 p-5 rounded-3xl border border-white/5 shadow-inner">
+          <div className="flex items-center justify-center gap-3 w-full">
+            <span className="text-muted line-through text-lg">{BOOK.originalPrice}</span>
+            <span className="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm font-bold border border-primary/30">
+              🔥 স্পেশাল অফার: {BOOK.price}
+            </span>
+          </div>
+          
+          <div className="text-emerald-400 font-bold text-sm bg-emerald-500/10 px-4 py-2 rounded-xl border border-emerald-500/20 w-fit">
+             একবার কিনলে লাইফটাইম সাপোর্ট এবং বইটির সকল নতুন এডিশন ফ্রি পাবেন!
+          </div>
         </div>
 
         <a

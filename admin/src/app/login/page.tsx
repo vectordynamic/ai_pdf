@@ -109,7 +109,7 @@ export default function LoginPage() {
         </div>
         
         <p className="mt-8 text-center text-zinc-600 text-xs">
-          Vectordynamic Admin System &bull; &copy; {new Date().getFullYear()}
+          Vectordaynamic Admin System &bull; &copy; {new Date().getFullYear()}
         </p>
       </div>
     </div>

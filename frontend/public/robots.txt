@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://vectordynamic.com/sitemap.xml
+Sitemap: https://vectordaynamic.com/sitemap.xml

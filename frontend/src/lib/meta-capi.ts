@@ -65,7 +65,7 @@ export async function sendMetaEvent(
         event_name: eventName,
         event_time: Math.floor(Date.now() / 1000),
         event_id: eventId,
-        event_source_url: process.env.NEXT_PUBLIC_SITE_URL || "https://vectordynamic.com",
+        event_source_url: process.env.NEXT_PUBLIC_SITE_URL || "https://vectordaynamic.com",
         action_source: "website",
         user_data: {
           em: userData.email ? [hashData(userData.email)] : [],

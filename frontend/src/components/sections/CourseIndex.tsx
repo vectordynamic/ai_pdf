@@ -37,15 +37,16 @@ export default function CourseIndex() {
       </div>
 
       <div className="flex justify-center pt-8">
-         <a 
-           href="/cover/index.pdf" 
-           target="_blank" 
-           rel="noopener noreferrer"
-           className="group inline-flex items-center justify-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 text-text font-bold px-6 sm:px-8 py-4 rounded-xl transition-all w-full sm:w-auto text-center"
-         >
-           <Download className="w-5 h-5 text-primary group-hover:-translate-y-1 transition-transform" />
-           সম্পূর্ণ কারিকুলাম ও বিস্তারিত সিলেবাস ডাউনলোড করুন (PDF)
-         </a>
+          <a 
+            href="/cover/index.pdf" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-primary to-accent text-bg font-black px-8 py-5 rounded-2xl transition-all w-full sm:w-auto text-center shadow-[0_10px_30px_rgba(16,185,129,0.3)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.5)] hover:-translate-y-1 active:scale-95"
+          >
+            <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+            <Download className="w-6 h-6 animate-bounce" />
+            সম্পূর্ণ ইনডেক্স ও সিলেবাস ডাউনলোড করুন (PDF)
+          </a>
       </div>
     </section>
   );

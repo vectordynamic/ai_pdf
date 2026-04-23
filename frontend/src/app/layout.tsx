@@ -39,6 +39,10 @@ export default function RootLayout({
       className={`${jakarta.variable} ${inter.variable} ${bangla.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <head>
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://www.facebook.com" />
+      </head>
       <body className="min-h-full flex flex-col font-inter bg-bg text-text" suppressHydrationWarning>
         {/* Official Next.js Way to load Meta Pixel */}
         <Script

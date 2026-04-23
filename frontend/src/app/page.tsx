@@ -8,6 +8,9 @@ import SocialProof from "@/components/sections/SocialProof";
 import HowToBuy from "@/components/sections/HowToBuy";
 import BottomInfo from "@/components/sections/BottomInfo";
 import TrackOnView from "@/components/TrackOnView";
+import ProblemSolution from "@/components/sections/ProblemSolution";
+import BonusSection from "@/components/sections/BonusSection";
+import StickyCTA from "@/components/StickyCTA";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://yourdomain.com";
 
@@ -51,39 +54,55 @@ export default function BookDetailPage() {
       <div className="fixed bottom-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[150px] -z-10 pointer-events-none" />
 
       <div className="max-w-4xl mx-auto w-full px-6 py-12 md:py-20 space-y-16 md:space-y-24">
-        {/* 1. Hero + Buy Button */}
+        {/* 1. Hero */}
         <HeroSection />
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* 2. Core Highlights — prove the value (tracks ViewContent on scroll) */}
+        {/* 2. Problem/Solution — The Hook */}
+        <div id="problem" className="scroll-mt-24">
+          <ProblemSolution />
+        </div>
+
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+        {/* 3. Core Highlights — prove the value */}
         <TrackOnView eventName="ViewContent" eventData={{ content_name: "WhatsInside Section", content_category: "eBook" }}>
           <WhatsInside />
         </TrackOnView>
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* 3. Who is it for — make them self-identify */}
+        {/* 4. Who is it for */}
         <WhoIsThisFor />
 
-        {/* 4. Social Proof — build trust BEFORE asking for money */}
-        <SocialProof />
-
-        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-        {/* 5. Full Curriculum — show depth of content */}
+        {/* 5. Full Curriculum */}
         <CourseIndex />
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* 6. FAQ + Why This Book — handle objections */}
+        {/* 6. Bonuses — Increase Value */}
+        <BonusSection />
+
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+        {/* 7. Social Proof */}
+        <SocialProof />
+
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+        {/* 8. FAQ */}
         <BottomInfo />
 
         <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-        {/* 7. Payment / Order Form — ask for money LAST after full trust */}
-        <HowToBuy />
+        {/* 9. Payment / Order Form */}
+        <div id="checkout" className="scroll-mt-24">
+          <HowToBuy />
+        </div>
       </div>
+
+      <StickyCTA />
 
       {/* Footer */}
       <footer className="w-full border-t border-white/10 bg-surface/30 backdrop-blur-md py-12 text-center text-muted text-sm px-6">

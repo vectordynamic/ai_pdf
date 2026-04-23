@@ -4,6 +4,7 @@ import Image from "next/image";
 import { BOOK } from "@/const/book";
 import { fbEvent } from "@/components/MetaPixel";
 import CountdownTimer from "@/components/CountdownTimer";
+import { Download } from "lucide-react";
 
 export default function HeroSection() {
   return (
@@ -57,11 +58,20 @@ export default function HeroSection() {
         </div>
 
         <a
-          href="#checkout"
-          onClick={() => fbEvent("Lead", { content_name: BOOK.title, value: BOOK.priceValue, currency: "BDT" })}
-          className="w-full block bg-primary hover:bg-emerald-400 text-bg font-extrabold text-lg py-5 px-8 rounded-2xl shadow-[0_0_40px_rgba(16,185,129,0.4)] hover:shadow-[0_0_60px_rgba(16,185,129,0.6)] transform transition-all duration-300 hover:scale-[1.02] active:scale-95 text-center focus:ring-4 focus:ring-primary/50 outline-none"
+          href="#problem"
+          className="w-full block bg-surface/50 hover:bg-surface/80 text-text border border-white/10 font-extrabold text-lg py-5 px-8 rounded-2xl shadow-xl transform transition-all duration-300 hover:scale-[1.02] active:scale-95 text-center outline-none"
         >
-          অর্ডার করুন — {BOOK.price}
+          জানতে চান কীভাবে? — নিচের দিকে যান 👇
+        </a>
+
+        <a 
+          href="/cover/index.pdf" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="flex items-center justify-center gap-2 text-primary font-bold hover:text-emerald-400 transition-colors py-2 group"
+        >
+          <Download className="w-5 h-5 group-hover:translate-y-0.5 transition-transform" />
+          বইটির সম্পূর্ণ ইনডেক্স দেখুন (PDF)
         </a>
 
         <p className="flex items-center justify-center gap-2 text-sm text-muted font-medium w-full text-center mt-2">

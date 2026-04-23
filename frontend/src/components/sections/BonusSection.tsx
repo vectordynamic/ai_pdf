@@ -82,7 +82,6 @@ export default function BonusSection() {
 
          <a 
            href="#checkout"
-           onClick={() => trackDualEvent("InitiateCheckout", { content_name: BOOK.title, value: BOOK.priceValue, currency: "BDT" })}
            className="relative w-full max-w-sm bg-primary hover:bg-emerald-400 text-bg font-black text-xl py-6 rounded-2xl shadow-[0_20px_50px_rgba(16,185,129,0.3)] hover:shadow-[0_25px_60px_rgba(16,185,129,0.5)] transition-all duration-300 hover:scale-[1.02] active:scale-95"
          >
            অর্ডার করুন — {BOOK.price}

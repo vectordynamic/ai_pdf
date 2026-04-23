@@ -7,7 +7,7 @@ import * as z from "zod";
 import { CheckCircle2, Lock, Loader2, ChevronDown } from "lucide-react";
 import { BOOK } from "@/const/book";
 import { toast } from "sonner";
-import { fbEvent } from "@/components/MetaPixel";
+import { fbEvent, trackDualEvent } from "@/components/MetaPixel";
 
 // The validation schema
 const formSchema = z.object({
@@ -44,15 +44,15 @@ export default function CheckoutForm() {
   });
 
   const onSubmit = async (data: FormData) => {
-    // Track InitiateCheckout with numeric value for accurate ROAS
-    fbEvent("InitiateCheckout", {
-      content_name: BOOK.title,
-      content_category: "eBook",
-      value: BOOK.priceValue,
-      currency: "BDT",
-    });
-
     try {
+      // Track InitiateCheckout only when we are sure we are starting a VALID submission
+      trackDualEvent("InitiateCheckout", {
+        content_name: BOOK.title,
+        content_category: "eBook",
+        value: BOOK.priceValue,
+        currency: "BDT",
+      });
+
       const response = await fetch("/api/submissions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -189,6 +189,7 @@ export default function CheckoutForm() {
         {/* Submit Button */}
         <button
           type="submit"
+          id="btn-manual-submit"
           disabled={isSubmitting}
           className="w-full group relative flex items-center justify-center gap-2 bg-primary hover:bg-emerald-400 disabled:opacity-70 disabled:hover:bg-primary text-bg font-extrabold text-lg py-5 px-8 rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_40px_rgba(16,185,129,0.5)] transform transition-all duration-300 active:scale-95 focus:ring-4 focus:ring-primary/50 outline-none mt-4 cursor-pointer disabled:cursor-not-allowed"
         >

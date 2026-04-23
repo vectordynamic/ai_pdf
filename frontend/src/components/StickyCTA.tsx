@@ -2,7 +2,7 @@
 
 import { BOOK } from "@/const/book";
 import { ShoppingCart } from "lucide-react";
-import { fbEvent } from "@/components/MetaPixel";
+import { fbEvent, trackDualEvent } from "@/components/MetaPixel";
 
 export default function StickyCTA() {
   return (
@@ -20,7 +20,7 @@ export default function StickyCTA() {
         
         <a 
           href="#checkout"
-          onClick={() => fbEvent("InitiateCheckout", { content_name: BOOK.title, value: BOOK.priceValue, currency: "BDT" })}
+          onClick={() => trackDualEvent("InitiateCheckout", { content_name: BOOK.title, value: BOOK.priceValue, currency: "BDT" })}
           className="bg-primary hover:bg-emerald-400 text-bg font-black text-sm px-6 py-3 rounded-xl transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] active:scale-95"
         >
           অর্ডার দিন

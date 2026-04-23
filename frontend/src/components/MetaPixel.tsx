@@ -15,9 +15,28 @@ export const fbEvent = (name: string, options = {}, eventId?: string) => {
       } else {
         fbq("track", name, options);
       }
-    } else {
-      console.warn(`Meta Pixel: fbq not found. Event ${name} was not tracked.`);
     }
+  }
+};
+
+/**
+ * Fires both Browser Pixel and Server CAPI events for 100% coverage.
+ */
+export const trackDualEvent = (name: string, options = {}, eventId?: string) => {
+  // 1. Browser Pixel
+  fbEvent(name, options, eventId);
+
+  // 2. Server CAPI Bridge
+  if (typeof window !== "undefined") {
+    fetch("/api/track", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        eventName: name,
+        customData: options,
+        eventId: eventId,
+      }),
+    }).catch((err) => console.error("CAPI Bridge Error:", err));
   }
 };
 

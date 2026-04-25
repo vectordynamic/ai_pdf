@@ -25,10 +25,10 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     }
 
     await connectToDatabase();
-    
+
     const resolvedParams = await params;
     const id = resolvedParams.id;
-    
+
     // Find before update to check if it was already verified (consistency)
     const existing = await Submission.findById(id);
     if (!existing) {
@@ -44,32 +44,36 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
       { status: "Verified" },
       { returnDocument: "after" }
     );
-    
+
     if (!submission) {
       return NextResponse.json({ error: "Not Found" }, { status: 404 });
     }
 
     // Trigger Meta CAPI Purchase Event
-    // We run this in the background (no await) to keep admin response fast
-    sendMetaEvent(
-      "Purchase",
-      {
-        email: submission.email,
-        phone: submission.mobile,
-        client_ip_address: submission.ipAddress,
-        client_user_agent: submission.userAgent,
-        fbp: submission.fbp,
-        fbc: submission.fbc,
-      },
-      {
-        value: BOOK.priceValue,
-        currency: "BDT",
-        content_name: BOOK.title,
-        content_category: "eBook",
-      },
-      submission._id.toString() // Event ID for deduplication
-    ).catch(err => console.error("Background CAPI Error:", err));
-    
+    // We await this to ensure the signal is delivered before the response completes
+    try {
+      await sendMetaEvent(
+        "Purchase",
+        {
+          email: submission.email,
+          phone: submission.mobile,
+          client_ip_address: submission.ipAddress,
+          client_user_agent: submission.userAgent,
+          fbp: submission.fbp,
+          fbc: submission.fbc,
+        },
+        {
+          value: BOOK.priceValue,
+          currency: "BDT",
+          content_name: BOOK.title,
+          content_category: "eBook",
+        },
+        submission._id.toString() // Event ID for deduplication
+      );
+    } catch (err) {
+      console.error("CAPI Purchase Error:", err);
+    }
+
     return NextResponse.json({ success: true, submission });
   } catch (error) {
     console.error(error);
